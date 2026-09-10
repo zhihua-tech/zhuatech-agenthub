@@ -20,5 +20,8 @@ import org.junit.jupiter.api.*; import org.springframework.beans.factory.annotat
         .andExpect(jsonPath("$.data.decision").value("BLOCKED"))
         .andExpect(jsonPath("$.data.projectedCost").value(1.8))
         .andExpect(jsonPath("$.data.violations.length()").value(3));}
+    @Test void operatorCanEvaluateToolExecutionPolicy()throws Exception{mvc.perform(post("/api/enterprise/agenthub/tool-execution-policy").header("Authorization","Bearer "+operatorToken).contentType(MediaType.APPLICATION_JSON).content("{\"runId\":\"RUN-100\",\"tenantId\":\"tenant-a\",\"agentTenantId\":\"tenant-a\",\"toolName\":\"crm.customer.lookup\",\"allowedTools\":[\"crm.customer.lookup\"],\"operation\":\"READ\",\"identityVerified\":true,\"scopedCredential\":true,\"piiDetected\":false,\"piiApproved\":false,\"secretDetected\":false,\"humanApproval\":false,\"budgetRemaining\":100,\"estimatedCost\":2,\"duplicateRequest\":false,\"destinationAllowlisted\":true}"))
+        .andExpect(status().isOk()).andExpect(jsonPath("$.data.decision").value("ALLOW_READ"))
+        .andExpect(jsonPath("$.data.policyHash").isNotEmpty());}
     @Test void anonymousRequestIsDenied()throws Exception{mvc.perform(get("/api/admin/dashboard")).andExpect(status().isForbidden());}
 }

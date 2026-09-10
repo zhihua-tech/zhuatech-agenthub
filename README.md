@@ -60,3 +60,7 @@ SEO：Agent 平台源码、AgentOps、企业智能体治理、AI Agent 开源、
 ## 企业级 Agent 生产授权
 
 新增 `POST /api/enterprise/agenthub/production-authorization`，覆盖工具权限、凭据、安全评测、人工审批、审计、熔断、容量与成本，返回 `AUTHORIZE / PILOT / BLOCKED`。详见 [生产授权说明](docs/ENTERPRISE_AGENT_AUTHORIZATION.md)。
+
+## 工具执行策略门禁
+
+`POST /api/enterprise/agenthub/tool-execution-policy` 在每次真实工具调用前执行租户、允许清单、最小权限凭据、密钥与 PII 扫描、预算、人工审批、外发目标和幂等检查，支持只读放行、执行放行、人工复核、安全重放或拒绝。详见[工具执行策略说明](docs/ENTERPRISE_TOOL_POLICY.md)。
