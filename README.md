@@ -64,3 +64,5 @@ SEO：Agent 平台源码、AgentOps、企业智能体治理、AI Agent 开源、
 ## 工具执行策略门禁
 
 `POST /api/enterprise/agenthub/tool-execution-policy` 在每次真实工具调用前执行租户、允许清单、最小权限凭据、密钥与 PII 扫描、预算、人工审批、外发目标和幂等检查，支持只读放行、执行放行、人工复核、安全重放或拒绝。详见[工具执行策略说明](docs/ENTERPRISE_TOOL_POLICY.md)。
+
+`POST /api/enterprise/agenthub/tool-plan-preflight` 进一步检查完整多步工具计划：逐步执行原有策略，并核对统一运行/租户、写操作幂等键冲突和累计成本预算。只有全计划通过才返回 `READY`；需人工审批返回 `REVIEW`，跨租户、重复写入键或超预算返回 `DENY`。
