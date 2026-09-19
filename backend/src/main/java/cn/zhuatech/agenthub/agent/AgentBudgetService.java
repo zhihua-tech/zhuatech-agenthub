@@ -11,9 +11,16 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 在智能体进入执行队列前估算令牌、费用和工具调用预算。 */
+/**
+ * 在智能体进入执行队列前估算令牌、费用和工具调用预算。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class AgentBudgetService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public BudgetResult evaluate(BudgetRequest request) {
         BigDecimal projectedCost = request.costPerThousandTokens()
             .multiply(BigDecimal.valueOf(request.estimatedTokens()))
@@ -37,6 +44,9 @@ public class AgentBudgetService {
         );
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record BudgetRequest(
         @NotBlank(message = "请输入智能体名称") String agentName,
         @Positive int estimatedTokens,
@@ -47,6 +57,9 @@ public class AgentBudgetService {
         @Positive int toolCallLimit
     ) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record BudgetResult(
         String decision,
         BigDecimal projectedCost,

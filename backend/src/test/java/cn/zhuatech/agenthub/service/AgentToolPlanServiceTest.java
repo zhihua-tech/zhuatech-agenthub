@@ -8,9 +8,15 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 class AgentToolPlanServiceTest {
     private final AgentToolPlanService service = new AgentToolPlanService(new ToolExecutionPolicyService());
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private ToolExecutionPolicyService.PolicyRequest step(String run, String tenant, String key,
                                                           double cost, boolean approval) {
         return new ToolExecutionPolicyService.PolicyRequest(run, tenant, tenant, "crm.customer.update",
@@ -18,6 +24,9 @@ class AgentToolPlanServiceTest {
                 true, true, false, true, false, approval, 100, cost, key, false, true);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void allowsApprovedPlanInsideAggregateBudget() {
         var result = service.evaluate(new AgentToolPlanService.PlanRequest(List.of(
@@ -28,6 +37,9 @@ class AgentToolPlanServiceTest {
         assertThat(result.planFingerprint()).hasSize(64);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void blocksAggregateOverspendEvenWhenEachStepFits() {
         var result = service.evaluate(new AgentToolPlanService.PlanRequest(List.of(
@@ -37,6 +49,9 @@ class AgentToolPlanServiceTest {
         assertThat(result.blockers()).contains("计划累计预计费用超过剩余预算");
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void blocksCrossTenantAndDuplicateWriteKey() {
         var result = service.evaluate(new AgentToolPlanService.PlanRequest(List.of(
@@ -46,6 +61,9 @@ class AgentToolPlanServiceTest {
         assertThat(result.blockers()).hasSize(2);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void requiresApprovalWhenAnyStepNeedsIt() {
         var result = service.evaluate(new AgentToolPlanService.PlanRequest(List.of(

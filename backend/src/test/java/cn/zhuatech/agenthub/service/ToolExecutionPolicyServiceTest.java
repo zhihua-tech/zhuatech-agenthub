@@ -7,9 +7,15 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 class ToolExecutionPolicyServiceTest {
     private final ToolExecutionPolicyService service = new ToolExecutionPolicyService();
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void allowsReadOnlyToolWithScopedCredential() {
         var result = service.evaluate(request(ToolExecutionPolicyService.Operation.READ,
@@ -18,6 +24,9 @@ class ToolExecutionPolicyServiceTest {
         assertThat(result.policyHash()).hasSize(64);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void reviewsUnapprovedWrite() {
         var result = service.evaluate(request(ToolExecutionPolicyService.Operation.WRITE,
@@ -25,6 +34,9 @@ class ToolExecutionPolicyServiceTest {
         assertThat(result.decision()).isEqualTo(ToolExecutionPolicyService.Decision.REVIEW);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void allowsApprovedExternalCommunication() {
         var result = service.evaluate(request(ToolExecutionPolicyService.Operation.EXTERNAL_COMMUNICATION,
@@ -32,6 +44,9 @@ class ToolExecutionPolicyServiceTest {
         assertThat(result.decision()).isEqualTo(ToolExecutionPolicyService.Decision.ALLOW_EXECUTE);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void preventsDuplicateSideEffect() {
         var result = service.evaluate(request(ToolExecutionPolicyService.Operation.WRITE,
@@ -40,6 +55,9 @@ class ToolExecutionPolicyServiceTest {
         assertThat(result.obligations()).contains("返回首次执行结果，禁止重复调用外部系统");
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void deniesSecretAndUnapprovedPii() {
         var result = service.evaluate(request(ToolExecutionPolicyService.Operation.READ,
@@ -48,6 +66,9 @@ class ToolExecutionPolicyServiceTest {
         assertThat(result.blockers()).hasSize(2);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private ToolExecutionPolicyService.PolicyRequest request(
             ToolExecutionPolicyService.Operation operation, boolean approval, boolean pii,
             boolean piiApproved, boolean secret, String idempotencyKey, boolean duplicate,

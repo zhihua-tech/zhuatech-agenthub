@@ -9,13 +9,20 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-/** 在智能体真正执行工具前完成最小权限和人工审批检查。 */
+/**
+ * 在智能体真正执行工具前完成最小权限和人工审批检查。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class AgentGovernanceService {
     private static final Set<String> REGISTERED_TOOLS = Set.of(
         "knowledge.search", "ticket.read", "ticket.comment", "customer.read", "report.generate"
     );
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public PreflightResult preflight(PreflightRequest request) {
         List<String> normalizedTools = request.tools().stream()
             .map(String::trim)
@@ -48,6 +55,9 @@ public class AgentGovernanceService {
         );
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record PreflightRequest(
         @NotBlank(message = "请输入智能体目标") String objective,
         @NotEmpty(message = "请至少选择一个工具") List<String> tools,
@@ -55,6 +65,9 @@ public class AgentGovernanceService {
         boolean sensitiveData
     ) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record PreflightResult(
         String decision,
         int riskScore,

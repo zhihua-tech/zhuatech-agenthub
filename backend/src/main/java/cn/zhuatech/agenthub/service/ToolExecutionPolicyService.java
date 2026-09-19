@@ -16,9 +16,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-/** 在 Agent 工具真正执行前完成租户、权限、参数、预算、审批和幂等策略决策。 */
+/**
+ * 在 Agent 工具真正执行前完成租户、权限、参数、预算、审批和幂等策略决策。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class ToolExecutionPolicyService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public PolicyResult evaluate(PolicyRequest request) {
         Set<String> allowedTools = request.allowedTools() == null ? Set.of() : Set.copyOf(request.allowedTools());
         List<String> blockers = new ArrayList<>();
@@ -63,11 +70,17 @@ public class ToolExecutionPolicyService {
         return result(decision, request, blockers, obligations);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private PolicyResult result(Decision decision, PolicyRequest request,
                                 List<String> blockers, List<String> obligations) {
         return new PolicyResult(decision, List.copyOf(blockers), List.copyOf(obligations), policyHash(request));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private String policyHash(PolicyRequest request) {
         Set<String> allowedTools = request.allowedTools() == null ? Set.of() : request.allowedTools();
         String source = String.join("|", request.tenantId(), request.agentTenantId(), request.toolName(),
@@ -81,10 +94,16 @@ public class ToolExecutionPolicyService {
         }
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private boolean blank(String value) {
         return value == null || value.isBlank();
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record PolicyRequest(
             @NotBlank String runId,
             @NotBlank String tenantId,
@@ -105,9 +124,18 @@ public class ToolExecutionPolicyService {
             boolean destinationAllowlisted
     ) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record PolicyResult(Decision decision, List<String> blockers,
                                List<String> obligations, String policyHash) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Operation { READ, WRITE, DELETE, EXTERNAL_COMMUNICATION }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Decision { ALLOW_READ, ALLOW_EXECUTE, REVIEW, REPLAY_SAFE, DENY }
 }

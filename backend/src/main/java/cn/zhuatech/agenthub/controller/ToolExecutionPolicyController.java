@@ -9,15 +9,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @RestController
 @RequestMapping("/api/enterprise/agenthub")
 public class ToolExecutionPolicyController {
     private final ToolExecutionPolicyService service;
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public ToolExecutionPolicyController(ToolExecutionPolicyService service) {
         this.service = service;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PostMapping("/tool-execution-policy")
     public ApiResponse<ToolExecutionPolicyService.PolicyResult> evaluate(
             @Valid @RequestBody ToolExecutionPolicyService.PolicyRequest request) {

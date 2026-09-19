@@ -15,15 +15,25 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/** 对完整工具计划做跨步骤的租户、幂等键和累计预算门禁。 */
+/**
+ * 对完整工具计划做跨步骤的租户、幂等键和累计预算门禁。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class AgentToolPlanService {
     private final ToolExecutionPolicyService toolPolicy;
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public AgentToolPlanService(ToolExecutionPolicyService toolPolicy) {
         this.toolPolicy = toolPolicy;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public PlanResult evaluate(PlanRequest request) {
         if (request.steps() == null || request.steps().isEmpty()) {
             throw new IllegalArgumentException("工具计划不能为空");
@@ -57,6 +67,9 @@ public class AgentToolPlanService {
                 List.copyOf(stepResults), List.copyOf(blockers), fingerprint(request));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private String fingerprint(PlanRequest request) {
         StringBuilder source = new StringBuilder().append(request.totalBudgetRemaining());
         for (var step : request.steps()) {
@@ -72,12 +85,21 @@ public class AgentToolPlanService {
         }
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record PlanRequest(@NotEmpty @Valid List<ToolExecutionPolicyService.PolicyRequest> steps,
                               @DecimalMin("0.0") double totalBudgetRemaining) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record PlanResult(PlanDecision decision, double estimatedTotalCost,
                              List<ToolExecutionPolicyService.PolicyResult> steps,
                              List<String> blockers, String planFingerprint) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum PlanDecision { READY, REVIEW, DENY }
 }
