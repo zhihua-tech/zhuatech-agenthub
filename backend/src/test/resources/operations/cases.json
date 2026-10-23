@@ -1,0 +1,62 @@
+[
+  {
+    "patch": {},
+    "expected": {
+      "decision": "REVIEW",
+      "maximumCalls": "#14"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "approvedWrites": "1"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "approvedIrreversible": "0"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "callBudget": "13"
+    },
+    "expected": {
+      "decision": "HOLD",
+      "budgetGap": "#1"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "retries": "0"
+    },
+    "expected": {
+      "decision": "PASS",
+      "maximumCalls": "#7"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "irreversible": "3"
+    },
+    "expected": {},
+    "error": true
+  },
+  {
+    "patch": {
+      "approvedWrites": "3"
+    },
+    "expected": {},
+    "error": true
+  }
+]

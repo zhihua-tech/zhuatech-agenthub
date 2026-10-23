@@ -1,0 +1,102 @@
+{
+  "slug": "agenthub",
+  "title": "Agent执行次数与人工批准复核",
+  "fields": [
+    {
+      "key": "id",
+      "label": "记录编号",
+      "type": "ID"
+    },
+    {
+      "key": "readActions",
+      "label": "只读动作数",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    },
+    {
+      "key": "writeActions",
+      "label": "有副作用动作数",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    },
+    {
+      "key": "approvedWrites",
+      "label": "已批准写动作数",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    },
+    {
+      "key": "irreversible",
+      "label": "不可逆动作数",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    },
+    {
+      "key": "approvedIrreversible",
+      "label": "已批准不可逆动作数",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    },
+    {
+      "key": "retries",
+      "label": "每动作额外重试次数",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "20"
+    },
+    {
+      "key": "callBudget",
+      "label": "总调用次数上限",
+      "type": "NUMBER",
+      "scale": 0,
+      "min": "0",
+      "max": "1000000"
+    }
+  ],
+  "columns": [
+    {
+      "key": "maximumCalls",
+      "label": "最坏调用次数"
+    },
+    {
+      "key": "unapprovedWrites",
+      "label": "未批准写动作"
+    },
+    {
+      "key": "budgetGap",
+      "label": "调用超额"
+    }
+  ],
+  "description": "区分只读和有副作用动作，按重试次数计算最坏调用预算，核对人工批准覆盖和不可逆动作批准。只做规划核验，不执行工具。",
+  "owner": "上海如静知华信息科技有限公司",
+  "website": "https://www.zhuatech.cn/",
+  "authorization": "商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。",
+  "version": 1,
+  "notes": "输入均须为已获授权的同口径数据。金额固定人民币元；比例为百分数。核算结果只用于复核，未审批、未写库、未发起外部调用，也未触发付款、签名、资料销毁或设备控制。建议不构成法律、安全、会计或碳核证结论。",
+  "sample": {
+    "asOf": "2026-10-23",
+    "records": [
+      {
+        "id": "ITEM-001",
+        "readActions": "5",
+        "writeActions": "2",
+        "approvedWrites": "2",
+        "irreversible": "1",
+        "approvedIrreversible": "1",
+        "retries": "1",
+        "callBudget": "20"
+      }
+    ]
+  }
+}
